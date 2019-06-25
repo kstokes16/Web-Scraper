@@ -8,7 +8,7 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-var db = require ("./models");
+var db = require ("./models/Story");
 
 var PORT = 3000;
 
@@ -66,5 +66,5 @@ app.get("/scrape", function (req, res) {
 
 // starting the server here
 app.listen(PORT, function() {
-    consolelog("App running on port " + PORT + ".");
+    console.log("App running on port " + PORT + ".");
 });

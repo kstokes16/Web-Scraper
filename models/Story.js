@@ -9,3 +9,10 @@ var StorySchema = new Schema ({
         required: true
     }
 })
+
+// Exporting an object containing all of our models
+
+module.exports = {
+    Story: require("./Story")
+  };
+  
