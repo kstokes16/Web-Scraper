@@ -1,14 +1,14 @@
-var express = require("express");
-var logger = require("morgan");
+const express = require("express");
+const logger = require("morgan");
 
 // to run mongodb
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // web scraping tools
-var axios = require("axios");
-var cheerio = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-var db = require ("./models/Story");
+const db = require ("./models");
 
 var PORT = 3000;
 
@@ -26,14 +26,17 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // connect to Mongo DB
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/ArticleSaver', {useNewUrlParser: true});
+
+// Routes are below
 
 // GET route for scraping the website that I chooose
 app.get("/scrape", function (req, res) {
-    axios.get("https://mysitehere.com").then(function(response) {
+    axios.get("https://www.mlb.com/").then(function(response) {
         var $ = cheerio.load(response.data);
         // select what you want to scrape here
-        $("article h2").each(function(i, element) {
+
+        $("a.tnt-asset-link h3").each(function(i, element) {
 
             // set emply result variable for what i am scraping
             let result = {};
@@ -61,7 +64,44 @@ app.get("/scrape", function (req, res) {
 });
 
 // need to add all GET and POST routes below
+app.get("/stories", function (req, res) {
+    // Grab every story
+    db.Story.find({})
+      .then(function(dbStory) {
+        // Send back successful stories
+        res.json(dbStory);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
 
+app.get("/stories/:id", function (req, res) {
+    db.Story.findOne({ _id: req.params.id})
+    .populate("note")
+    .then(function(dbStory) {
+        res.json(dbStory);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+app.post("stories/:id", function (req, res) {
+    db.Note.create(req.body)
+    .then(function (dbNote) {
+        return db.Story.findOneAndUpdate({ _id: req.params.id}, { note: dbNote._id }, {new: true});
+    })
+    // Send the requested story back to the client
+    .then(function(dbStory) {
+        res.json(dbStory);
+    })
+    // If a story wasn't found, send an error to the client
+    .catch(function (err) {
+        res.json(err);
+    });
+});
 
 
 // starting the server here
