@@ -1,18 +1,30 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// Schema constructor
-var Schema = mongoose.Schema;
+// Save a reference to the Schema constructor
+const Schema = mongoose.Schema;
 
-var StorySchema = new Schema ({
-    title: {
-        type: String,
-        required: true
-    }
-})
+// Using the Schema constructor, create a new UserSchema object
+const StorySchema = new Schema({
+  // `title` is required and of type String
+  title: {
+    type: String,
+    required: true
+  },
+  // `link` is required and of type String
+  link: {
+    type: String,
+    required: true
+  },
+  // The ref property links the ObjectId to the Note model
+  // This allows us to populate the Article with an associated Note
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: "Note"
+  }
+});
 
-// Exporting an object containing all of our models
+// This creates our model from the above schema, using mongoose's model method
+const Story = mongoose.model("Story", StorySchema);
 
-module.exports = {
-    Story: require("./Story")
-  };
-  
+// Export the Article model
+module.exports = Story;
