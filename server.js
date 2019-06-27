@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost/ArticleSaver', {useNewUrlParser: true});
 
 // GET route for scraping the website that I chooose
 app.get("/scrape", function (req, res) {
-    axios.get("https://www.mlb.com/").then(function(response) {
+    axios.get("https://www.alligator.org/").then(function(response) {
         var $ = cheerio.load(response.data);
         // select what you want to scrape here
 
