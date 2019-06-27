@@ -36,7 +36,7 @@ app.get("/scrape", function (req, res) {
         var $ = cheerio.load(response.data);
         // select what you want to scrape here
 
-        $("a.tnt-asset-link h3").each(function(i, element) {
+        $(".card-headline h3").each(function(i, element) {
 
             // set emply result variable for what i am scraping
             let result = {};
