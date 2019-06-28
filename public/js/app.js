@@ -5,3 +5,15 @@ $.getJSON("/stories", function(data) {
       $("#stories").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     }
   });
+
+$(document).on("click", "p", function() {
+  $("#notes").empty();
+  console.log("jquery working.");
+  let thisID = $(this).attr("data-id");
+
+  // AJAX call
+  $.ajax({
+    method: "GET",
+    url: "/stories/" + thisID
+  })
+});
