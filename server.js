@@ -4,7 +4,7 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 app.use(express.static(__dirname + "/public"));
 const logger = require("morgan");
-const db = require ("./models");
+var db = require ("./models");
 // use morgan 
 app.use(logger("dev"));
 
@@ -24,8 +24,17 @@ app.use(express.json());
 
 // set public folder as the default
 
+var mongoDB = process.env.MONGODB_URI || "mongodb://localhost/ArticleSaver";
+
 // connect to Mongo DB
-mongoose.connect('mongodb://localhost/ArticleSaver', {useNewUrlParser: true});
+mongoose.connect(mongoDB, function (error) {
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("Mongo connection successful.");
+    }
+});
 
 // Routes are below
 require("./routes/htmlRoutes")(app);
