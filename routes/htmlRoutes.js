@@ -37,9 +37,8 @@ module.exports = function (app) {
                     console.log(err);
                 });
             });
-    
-            // send scrape complete message
-            res.send("Your scrape is done");
+           // res.send("Your scrape is done");
+            res.render("index");
         });
     });
 

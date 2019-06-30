@@ -2,7 +2,7 @@ $.getJSON("/stories", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#stories").append("<h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + data[i].link + "</h5>");
+      $("#stories").append("<h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + "https://www.alligator.org" + data[i].link + "</h5>");
     }
   });
 
