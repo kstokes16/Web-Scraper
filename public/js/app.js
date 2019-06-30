@@ -25,7 +25,7 @@ $(document).on("click", "p", function() {
     $("#notes").append
     ("<h2>" + data.title + "</h2");
 
-    // Append an input to enter a new title
+    // Append an input to enter a new note
     $("#notes").append("<input id='titleinput' name='title' >");
 
     // A button to submit a new note, with the ID of the article saved to it

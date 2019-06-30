@@ -24,6 +24,11 @@ module.exports = function (app) {
                 result.link = $(this)
                     .children("a")
                     .attr("href");
+                result.image = $(this)
+                    .parent(".card-container")
+                    .children(".card-image")
+                    .attr("src");
+
     
                 db.Story.create(result)
                 .then(function(dbStory) {
@@ -61,6 +66,10 @@ module.exports = function (app) {
         .catch(function(err) {
             res.json(err);
         });
+    });
+
+    app.get("/saved", function (req, res) {
+        res.render("saved")
     });
 
 }
