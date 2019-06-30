@@ -24,8 +24,7 @@ const StorySchema = new Schema({
     ref: "Note"
   },
   saved: {
-    type: Boolean,
-    default: false
+    type: Boolean
   }
 });
 

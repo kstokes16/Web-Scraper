@@ -24,6 +24,7 @@ app.use(express.json());
 
 // set public folder as the default
 
+// Link to database, depending on if deployed or running locally
 var mongoDB = process.env.MONGODB_URI || "mongodb://localhost/ArticleSaver";
 
 // connect to Mongo DB
