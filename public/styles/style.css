@@ -1,3 +1,32 @@
+.top-nav, .navbar-brand, .nav-link {
+    color: white;
+    background: #3d894c;
+}
+
 body {
-    background: #8c92ac;
+    color: #231f20;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 18px;
+    background-color: #e5e5e5;
+}
+
+.jumbotron {
+    background-image: url("/images/man-reading-newspaper-v2.png");
+    background-image: -o-linear-gradient(255, 255, 255, .2);
+    background-size: cover;
+}
+
+.jumbotron-header {
+    color: #231f20;
+    font-size: 64px;
+}
+
+.jumbotron-text {
+    color: #231f20;
+    font-size: 28px;
+}
+
+p {
+    font-size: 26px;
+    color: #3d894c;
 }

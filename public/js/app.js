@@ -2,12 +2,12 @@ $.getJSON("/stories", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#stories").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+      $("#stories").append("<h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + data[i].link + "</h5>");
     }
   });
 
 // functionality for click of article
-$(document).on("click", "p", function() {
+$(document).on("click", "h5", function() {
   $("#notes").empty();
   console.log("jquery working.");
   var thisID = $(this).attr("data-id");

@@ -29,7 +29,6 @@ module.exports = function (app) {
                     .children(".card-image")
                     .attr("src");
 
-    
                 db.Story.create(result)
                 .then(function(dbStory) {
                     console.log(dbStory);
