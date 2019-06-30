@@ -2,9 +2,12 @@ var express = require("express");
 var exphbs  = require('express-handlebars');
 var PORT = process.env.PORT || 3000;
 var app = express();
-app.use(express.static(__dirname + "/public"));
 const logger = require("morgan");
 var db = require ("./models");
+
+// use public directory 
+app.use(express.static(__dirname + "/public"));
+
 // use morgan 
 app.use(logger("dev"));
 
@@ -18,11 +21,15 @@ var cheerio = require("cheerio");
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+// require html and api routes
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+
 // use express to parse JSON
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-// set public folder as the default
+
 
 // Link to database, depending on if deployed or running locally
 var mongoDB = process.env.MONGODB_URI || "mongodb://localhost/ArticleSaver";
@@ -38,7 +45,6 @@ mongoose.connect(mongoDB, function (error) {
 });
 
 // Routes are below
-require("./routes/htmlRoutes")(app);
 
 // GET route for scraping the website that I chooose
 
