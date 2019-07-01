@@ -65,6 +65,8 @@ app.post("stories/:id", function (req, res) {
     });
 });
 
+var PORT = process.env.PORT || 3000;
+
 // starting the server here
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + ".");
