@@ -2,7 +2,7 @@ $.getJSON("/stories", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#stories").append("<h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" + "https://www.alligator.org" + data[i].link + "</h5>");
+      $("#stories").append("<div><h5 data-id='" + data[i]._id + "'>" +  data[i].title + "<br />" +  'https://www.alligator.org' + data[i].link + "</h5></div>");
     }
   });
 
@@ -23,13 +23,13 @@ $(document).on("click", "h5", function() {
     console.log(data);
     // Append the title of the article to the page
     $("#notes").append
-    ("<h2>" + data.title + "</h2");
+    ("<h3>Add a note to this story below</h3>" + "<h4>" + data.title + "</h4>");
 
     // Append an input to enter a new note
-    $("#notes").append("<input id='titleinput' name='title' >");
+    $("#notes").append("<input id='titleinput' name='title' >" + "<br> <br>");
 
     // A button to submit a new note, with the ID of the article saved to it
-    $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+    $("#notes").append("<button type='button' class='btn btn-success' data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
     if (data.note) {
       $("#titleinput").val

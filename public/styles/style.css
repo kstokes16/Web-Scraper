@@ -30,3 +30,12 @@ p {
     font-size: 26px;
     color: #3d894c;
 }
+
+.btn, .btn-success {
+    background-color: #3d894c;
+}
+
+.footer, .mt-auto, .py-3, .main-footer {
+    background-color: #3d894c;
+    color: white;
+}
